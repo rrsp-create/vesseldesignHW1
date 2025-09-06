@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Pressure Vessel Design</title>
+    <link rel="stylesheet" href="external.css">
+  </head>
+
+  <body>
+    <div>
+      <header>
+        <div class="left-side-header">
+          <img class="logo" src="design-logo.png">
+          <div class="page-title">Design Calculator</div>
+        </div>
+        <div class="right-side-header">
+          <div class="type-of-problem">Internal and External Pressure</div>
+          <a href="https://docs.google.com/spreadsheets/d/19VtEv_3SD_BVgp1B1-kS1gTPuyynkT8L/edit?gid=188668462#gid=188668462" class="type-of-problem combined">Combined Loading</a>
+        </div>
+      </header>
+
+      <div class="left-side-content">
+
+          <div class="design-pressure-container">
+            <h2>Design Pressure</h2>
+            <div>
+              <form class="pressure-type">
+                <input type="radio" id="radio1" name="pressureType" value="absolute" checked>Absolute<br>
+                <input type="radio" id="radio2" name="pressureType" value="gauge">Gauge<br>
+             </form>
+              <div class="parameter-container">
+                <label>P</label>
+                <input id="inputPressure" class="pressure-input-js" type="number" step="any">
+                <span class="unit">MPa</span>
+              </div>
+              <div class="parameter-container">
+                <label>Pd</label>
+                <input id="pressureDesignResult" type="number" step="any">
+                <span class="unit">MPa</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="temperature-container">
+            <h2>Design Temperature</h2>
+            <div>
+              <div class="parameter-container">
+                <label>T</label>
+                <input id="inputTemperature" class="temperature-input-js" type="number" step="any" max="854.9999">
+                <span class="unit">F</span>
+              </div>
+              <div class="parameter-container">
+                <label>Tmax</label>
+                <input id="temperatureResult" type="number" step="any" max="900">
+                <span class="unit">F</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="material-container">
+            <h2>Material</h2>
+            <form class="material-type">
+                <input type="radio" id="radio1" name="material" value="Carbon Steel" checked>Carbon Steel<br>
+                <input type="radio" id="radio2" name="material" value="Killed Carbon Steel">Killed Carbon Steel<br>
+                <input type="radio" id="radio2" name="material" value="Low Alloy Steel">Low Alloy Steel<br>
+                <input type="radio" id="radio2" name="material" value="410 Stainless Steel">410 Stainless Steel<br>
+                <input type="radio" id="radio2" name="material" value="304 Stainless Steel">304 Stainless Steel<br>
+                <input type="radio" id="radio2" name="material" value="347 Stainless Steel">347 Stainless Steel<br>
+                <input type="radio" id="radio2" name="material" value="321 Stainless Steel">321 Stainless Steel<br>
+                <input type="radio" id="radio2" name="material" value="316 Stainless Steel">316 Stainless Steel<br>
+             </form>
+          </div>
+
+
+          <div class="additional-parameters">
+            <div class="parameter-container">
+              <select id="diameterType">
+                <option value="Do">Do</option>
+                <option value="Di">Di</option>
+              </select>
+              <input class="diameterValue" type="number" step="any" id="diameterInput">
+              <div class="unit">mm</div>
+            </div>
+
+            <div class="parameter-container">
+              <label>Poisson's Ratio</label>
+              <input class="poissonInput" type="number" step="any" class="poissonInput">
+            </div>
+
+            <div class="parameter-container">
+              <label>P external</label>
+              <input type="number" step="any" class="PExternalInput">
+              <span class="unit">MPa</span>
+            </div>
+          </div>
+
+          <div class="joint-efficiency-container">
+            <h2>Joint Efficiency (E)</h2>
+            <div class="joint-content">
+              <div class="joint-description-container">
+                <h3>Joint Description</h3>
+                <form class="joint-type">
+                  <input type="radio" id="radio1" name="joint" value="Option 1" checked>Double-welded butt joint or equivalent<br>
+                  <input type="radio" id="radio2" name="joint" value="Option 2">Single-welded butt joint with backing strip<br>
+                  <input type="radio" id="radio2" name="joint" value="Option 2">Single-welded butt joint without backing strip<br>
+                  <input type="radio" id="radio2" name="joint" value="Option 2">Double fill fillet lap joint<br>
+                  <input type="radio" id="radio2" name="joint" value="Option 2">Single full fillet lap joint with plug welds<br>
+                  <input type="radio" id="radio2" name="joint" value="Option 2">Single full fillet lap joint without plug welds<br>
+                </form>
+              </div>
+
+              <div class="right-joint-container">
+                <div class="joint-degree-container">
+                  <h3>Degree of Radiographed</h3>
+                  <form class="head-type">
+                    <input type="radio" id="Full" name="degree" value="Full" checked>Full<br>
+                    <input type="radio" id="Spot" name="degree" value="Spot">Spot<br>
+                    <input type="radio" id="radio2" name="degree" value="None">None<br>
+                  </form>
+                </div>
+
+                <div class="e-value">
+                  <span>E =</span>
+                  <output class="efficiencyOutput"></output>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="head-container">
+            <h2>Head Geometry</h2>
+            <form class="head-type">
+              <input type="radio" id="radio1" name="groupName" value="Hemisphere" checked>Hemisphere<br>
+              <input type="radio" id="radio2" name="groupName" value="Ellipsoidal">Ellipsoidal<br>
+              <input type="radio" id="radio2" name="groupName" value="Standard Ellipsoidal">Standard Ellipsoidal<br>
+              <input type="radio" id="radio2" name="groupName" value="Standard Torisphere">Standard Torisphere<br>
+            </form>
+            <div class="ratio-container">
+              <div>Major to Minor Axis Ratio</div>
+              <div>
+                <div class="ratio-input">
+                  <input id="majorAxis">
+                  <span>:</span>
+                  <input id="minorAxis">
+                </div>
+              </div>
+              <div class="k-value">
+                <span>K =</span>
+                <output class="kValueOutput"></output>
+              </div>
+            </div>
+          </div>
+
+          <div class="stress-container">
+            <h2>Allowable Stress</h2>
+            <div class="parameter-container">
+              <label>S</label>
+              <output id="stressResult"></output>
+              <span class="unit">ksi</span>
+            </div>
+
+            <div class="parameter-container">
+              <label>S</label>
+              <output id="stressResultMPa"></output>
+              <span class="unit">MPa</span>
+            </div>
+          </div>
+
+          
+        </div>
+
+      <div class="bottom-container">
+        <div class="right-side-content">
+          <div class="answers">Answers</div>
+
+          <div class="thickness-container">
+            <div>Thickness</div>
+            <div class="parameter-container">
+              <label>Shell</label>
+              <output class="shellOutput"></output>
+              <span class="unit">mm</span>
+            </div>
+            <div class="parameter-container">
+              <label>Head</label>
+              <output class="headOutput"></output>
+              <span class="unit">mm</span>
+            </div>
+          </div>
+          <div class="pc-container">
+            <div>Critical Buckling Pressure</div>
+            <div>
+              <select class="shellType">
+                <option>Shell using General Formula</option>
+                <option>Shell using Kc</option><span>:</span>
+              </select>
+              <div class="parameter-container">
+                <label>Ey</label>
+                <input type="number" step="any" class="inputEy">
+                <span class="unit">GPa</span>
+              </div>
+              <div class="parameter-container">
+                <label>n (lobes)</label>
+                <input type="number" class="lobesInput">
+              </div>
+              <div class="parameter-container">
+              <label>Pc shell</label>
+              <output class="PcShellOutput"></output>
+              <span class="unit">MPa</span>
+            </div>
+            </div>
+
+            <div>
+              <div>Head:</div>
+              <div class="parameter-container">
+                <label>Pc head</label>
+                <output class="PcHeadOutput"></output>
+                <span class="unit">MPa</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lc-container">
+            <div>Critical length distance between stiffening rings</div>
+            <div class="parameter-container">
+              <label>Lc</label>
+              <output class="LcOutput"></output>
+            </div>
+          </div>
+
+          <div class="oc-container">
+            <div>Maximum Circumferential Stress</div>
+            <div class="parameter-container">
+              <label>Oc</label>
+              <output class="OcOutput"></output>
+            </div>
+          </div>
+
+          <div class="sf-container">
+            <div>Safety Factor</div>
+            <div class="parameter-container">
+              <label>S / Oc</label>
+              <output class="SFIntOutput"></output>
+            </div>
+            <div class="parameter-container">
+              <label>Pc / Pext</label>
+              <output class="SFExtOutput"></output>
+            </div>
+          </div>
+
+          <div class="bolts-container">
+            <div>Number of Bolts</div>
+            <div class="parameter-container">
+              <label>D bolts</label>
+              <input class="boltDInput">
+              <span class="unit">mm</span>
+            </div>
+            <div class="parameter-container">
+              <label>S bolts</label>
+              <input class="boltSInput">
+              <span class="unit">MPa</span>
+            </div>
+            <div class="parameter-container">
+              <label>n</label>
+              <output class="boltNOutput"></output>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      
+    </div>
+      
+
+
+    <script src="external.js"></script>
+  </body>
+</html>

@@ -1,0 +1,447 @@
+body {
+  padding: 20px 0;
+  background-color: #fdf7ef;
+  font-family: Century;
+  margin-top: 80px;
+  margin-left: 36px;
+  margin-right: 20px;
+}
+
+header {
+  font-size: 20px;
+  justify-content: space-between;
+  padding: 10px 40px;
+  position: fixed;
+  top: 0;
+  left: 0;      
+  z-index: 1000;
+  background-color: #cdbcab;
+  height: 55px;
+  display: flex;
+  right: 0;
+  border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+h2 {
+  font-weight: bold;
+  text-align: center;
+  justify-content: center;
+  background-color: white;
+  padding: 10px;
+  border-radius: 50px;
+  margin: 10px;
+  display: block;
+  text-wrap: nowrap;
+  font-size: 14px;
+}
+
+h3 {
+  font-size: 12px;
+  text-align: center;
+  text-wrap: nowrap;
+}
+
+
+.left-side-header,
+.right-side-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.left-side-header {
+  flex: 1;
+  justify-content: left;
+  border-color: black;
+}
+
+.logo {
+  width: 50px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 100px;
+  margin-right: 15px;
+}
+
+.page-title {
+  
+  color: white;
+  font-weight: bold;
+  text-wrap: nowrap;
+}
+
+.right-side-header {
+  flex: 100px;
+  justify-content: flex-end;
+  border-color: black;
+}
+
+.type-of-problem {
+  font-weight: bold;
+  margin-left: 10px;
+  border: 2px solid rgb(214, 214, 214);
+  background-color: #877462;
+  border-radius: 60px;
+  padding: 10px 20px;
+  text-wrap: nowrap;
+  color: white;
+  cursor: pointer;
+}
+
+.combined {
+  text-decoration: none;
+  background-color: white;
+  border: 2px solid black;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  color: black;
+}
+
+.combined:hover {
+  background-color: rgb(235, 235, 235);
+}
+
+.bottom-container {
+  display: flex;        
+  gap: 20px;            
+  align-items: flex-end;
+  margin-left: 1370px;
+}
+
+.left-side-content {
+  background-color: white;
+  column-count: 3;
+  column-gap: 15px;
+  padding: 20px;
+  max-width: 1300px;
+  position: fixed;
+  top: 135px;
+  border-radius: 20px;
+}
+
+.design-pressure-container,
+.material-container,
+.temperature-container,
+.stress-container,
+.joint-efficiency-container,
+.head-container,
+.additional-parameters {
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 15px;
+  background-color: #EEE3D6;
+  border-radius: 20px;
+  box-sizing: border-box;
+  break-inside: avoid;
+}
+
+
+
+.material-type,
+.joint-degree-container,
+.joint-description-container {
+  background-color: white;
+  margin: 10px;
+  padding: 12px;
+  border-radius: 20px;
+}
+
+.parameter-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.parameter-container label {
+  flex: 1;
+  font-weight: bold;
+  text-align: center;
+  margin-right: -16px;
+  text-wrap: nowrap;
+}
+
+.additional-parameters label {
+  flex: 1;
+  font-weight: bold;
+  text-align: center;
+  margin-right: 10px;
+  margin-left: 10px;
+  text-wrap: nowrap;
+}
+
+.parameter-container select {
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 6px;
+  font-size: inherit;
+  font-family: inherit;
+  border: 1px solid rgb(70, 58, 35);
+}
+
+.parameter-container input{
+  flex: 2;
+  padding: 6px 10px;
+  background-color: white;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  align-items: center;
+  height: 22px;
+  margin-left: 10px;
+  width: 41px;
+}
+
+
+
+.parameter-container output{
+  flex: 2;
+  padding: 6px 10px;
+  background-color: white;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  align-items: center;
+  min-height: 1.5em;
+  margin-left: 10px;
+}
+
+.parameter-container-stress{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0;
+  flex: 2;
+  padding: 6px 10px;
+  background-color: white;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  align-items: center;
+  min-height: 1.5em;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.parameter-container .unit {
+  flex: 0;
+  white-space: nowrap;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.pressure-type {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.head-type {
+  background-color: white;
+  margin: 12px;
+  border-radius: 16px;
+  padding: 10px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.ratio-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  font-weight: bold;
+  margin: 12px;
+  border-radius: 16px;
+}
+
+.ratio-input, .k-value, .e-value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 8px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.k-value, .e-value {
+  margin-bottom: 12px;
+}
+
+.e-value {
+  background-color: white;
+  padding: 10px 22px;
+  border-radius: 10px;
+  display: flex;
+}
+
+.ratio-input input,
+.k-value output,
+.e-value output {
+  width: 75px;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  flex: 1;
+  background-color: #EEE3D6;
+  text-align: center;
+}
+
+.joint-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex: 1;
+}
+
+.joint-description-container,
+.right-joint-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.additional-parameters {
+  padding: 10px;
+}
+
+
+.right-joint-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.right-side-content {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 360px;
+}
+
+.answers {
+  background-color: #bca38d;
+  color: black;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  padding: 8px 16px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.thickness-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #bca38d;
+  color: black;
+  justify-content: center;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.pc-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #bca38d;
+  color: black;
+  justify-content: center;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.shellType {
+  padding: 8px;
+  border-radius: 20px;
+  font-family: inherit;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.lc-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #bca38d;
+  color: black;
+  justify-content: center;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.sf-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #bca38d;
+  color: black;
+  justify-content: center;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.oc-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #bca38d;
+  color: black;
+  justify-content: center;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.bolts-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #bca38d;
+  color: black;
+  justify-content: center;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.thickness-container output,
+.PcShellOutput,
+.PcHeadOutput,
+.LcOutput,
+.SFIntOutput,
+.SFExtOutput,
+.boltNOutput {
+  color: black;
+}
+
+.ratio-container {
+  display: none;
+}
+
+.ratio-container.active {
+  display: flex;
+}
+
+
+
+
+
+
+
+
+
+

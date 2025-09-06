@@ -309,53 +309,63 @@ function calculateHeadThickness() {
   const DEl = document.querySelector('.diameterValue');
   const typeEl = document.getElementById("diameterType");
   const outputEl = document.querySelector('.headOutput');
-  const geometryEl = document.querySelector('.head-type input:checked');
+  const geometryEl = document.querySelector('.head-shape input:checked');
+
+  console.log(PdEl);
+  console.log(SEl);
+  console.log(EEl);
+  console.log(DEl);
+  console.log(typeEl);
+  console.log(outputEl);
+  console.log(geometryEl);
 
   if (!PdEl || !SEl || !EEl || !DEl || !typeEl || !outputEl || !geometryEl) {
-    console.warn("One or more required elements for Head thickness calculation are missing.");
+    console.warn("Missing elements for head thickness calculation");
     return;
   }
 
-  const Pd = parseFloat(PdEl.value);
-  const S = parseFloat(SEl.value);
-  const E = parseFloat(EEl.textContent);
-  const D = parseFloat(DEl.value);
+  const Pd = parseFloat(PdEl.textContent || PdEl.value);
+  const S  = parseFloat(SEl.textContent || SEl.value);
+  const E  = parseFloat(EEl.textContent || EEl.value);
+  const D  = parseFloat(DEl.value);
   const type = typeEl.value;
-  const geometry = geometryEl.nextSibling.textContent.trim();
+  const geometry = geometryEl.value;
+
+  console.log(Pd);
+  console.log(S);
+  console.log(E);
+  console.log(D);
+  console.log(type);
+  console.log(geometry);
 
   if ([Pd, S, E, D].some(v => isNaN(v))) {
+    console.warn("One of Pd, S, E, D is NaN", { Pd, S, E, D });
     outputEl.textContent = "";
     return;
   }
 
   let t;
 
-  if (geometry === 'Hemisphere') {
+  if (geometry === "Hemisphere") {
     if (type === "Di") {
       t = (Pd * D/2) / (2 * S * E - 0.2 * Pd);
-    } else if (type === "Do") {
-      t = ((Pd * D/2) / (2 * S * E + 0.8 * Pd));
-    } 
-  } else if (geometry === 'Standard Ellipsoidal') {
+    } else {
+      t = (Pd * D/2) / (2 * S * E + 0.8 * Pd);
+    }
+  } else if (geometry === "Standard Ellipsoidal") {
     if (type === "Di") {
       t = (Pd * D) / (2 * S * E - 0.2 * Pd);
-    } else if (type === "Do") {
+    } else {
       t = (Pd * D) / (2 * S * E + 1.8 * Pd);
-    } 
-  } else if (geometry === 'Ellipsoidal') {
+    }
+  } else if (geometry === "Ellipsoidal") {
     const K = calculateKvalue();
     if (type === "Di") {
       t = (Pd * D * K) / (2 * S * E - 0.2 * Pd);
-    } else if (type === "Do") {
-      t = (Pd * D * K) / (2 * S * E + 2 * Pd *(K - 0.1));
-    } 
-  } else if (geometry === 'Standard Torisphere') {
-      if (type === "Di") {
-        t = (0.885 * Pd * D) / (S * E - 0.1 * Pd);
-      } else if (type === "Do") {
-        t = (0.885 * Pd * D) / (S * E + 0.8 * Pd );
-      } 
-  } 
+    } else {
+      t = (Pd * D * K) / (2 * S * E + 2 * Pd * (K - 0.1));
+    }
+  }
   outputEl.textContent = Math.ceil(t);
 }
   
@@ -370,7 +380,7 @@ function calculateKvalue () {
 }
 
 document.querySelectorAll(
-  "#pressureDesignResult, .diameterValue, .material-type, .head-type, .joint-type, #temperatureResult, #inputTemperature, #diameterType"
+  "#pressureDesignResult, .diameterValue, .material-type, .head-type, .joint-type, #temperatureResult, #inputTemperature, #diameterType, .head-shape"
 ).forEach(el => {
   el.addEventListener("input", calculateHeadThickness);
   el.addEventListener("change", calculateHeadThickness);

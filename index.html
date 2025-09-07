@@ -165,7 +165,8 @@
               <span class="unit">MPa</span>
             </div>
           </div>
-          <a href="https://rrsp-create.github.io/vesselDesignAnalysisHW/">Results Analysis</a>
+
+          <a class="analysis-link" href="https://rrsp-create.github.io/vesselDesignAnalysisHW/">Results Analysis</a>
           
         </div>
 
@@ -175,6 +176,7 @@
 
           <div class="thickness-container">
             <div>Thickness</div>
+            <div class="note">Note: A minimum of 2mm corrosion allowance is considered</div>
             <div class="parameter-container">
               <label>Shell</label>
               <output class="shellOutput"></output>
@@ -190,23 +192,34 @@
             <div>Critical Buckling Pressure</div>
             <div>
               <select class="shellType">
-                <option>Shell using General Formula</option>
-                <option>Shell using Kc</option><span>:</span>
+                <option value="general">Shell using General Formula</option>
+                <option value="kc">Shell using Kc</option>
               </select>
-              <div class="parameter-container">
-                <label>Ey</label>
-                <input type="number" step="any" class="inputEy">
-                <span class="unit">GPa</span>
+
+              <div class="general-inputs">
+                <div class="parameter-container">
+                  <label>Ey</label>
+                  <input type="number" step="any" class="inputEy">
+                  <span class="unit">GPa</span>
+                </div>
+                <div class="parameter-container">
+                  <label>n (lobes)</label>
+                  <input type="number" class="lobesInput">
+                </div>
               </div>
-              <div class="parameter-container">
-                <label>n (lobes)</label>
-                <input type="number" class="lobesInput">
+
+              <div class="kc-input" style="display:none;">
+                <div class="parameter-container">
+                  <label>Kc</label>
+                  <input type="number" step="any" class="inputKc">
+                </div>
               </div>
+
               <div class="parameter-container">
-              <label>Pc shell</label>
-              <output class="PcShellOutput"></output>
-              <span class="unit">MPa</span>
-            </div>
+                <label>Pc shell</label>
+                <output class="PcShellOutput"></output>
+                <span class="unit">MPa</span>
+              </div>
             </div>
 
             <div>
@@ -276,4 +289,3 @@
     <script src="external.js"></script>
   </body>
 </html>
-

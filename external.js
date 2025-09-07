@@ -483,10 +483,6 @@ function calculateSFBasedOnExternal () {
   const PcShell = parseFloat(PcShellEl.textContent);
   const Pext = parseFloat(PextEl.value);
 
-  if ([Pext, PcShell].some(val => isNaN(val))) {
-    outputEl.textContent = "";
-    return;
-  }
   const SF = PcShell/Pext;
 
   outputEl.textContent = SF.toFixed(4);
@@ -733,6 +729,7 @@ document.querySelectorAll(
   el.addEventListener("input", calculatePcShell);
   el.addEventListener("change", calculatePcShell);
 });
+
 
 
 

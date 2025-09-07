@@ -318,6 +318,11 @@ h3 {
   flex: 1;
 }
 
+.note {
+  font-weight: normal;
+  padding: 10px 0px;
+}
+
 .right-side-content {
   flex: 0 0 auto;
   display: flex;

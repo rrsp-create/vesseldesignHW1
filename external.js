@@ -192,11 +192,6 @@ function displayAllowableStress() {
   const stressResult = document.getElementById("stressResult");
   const stressResultMPa = document.getElementById("stressResultMPa");
 
-  if (!tempEl || !materialEl || !stressResult || !stressResultMPa) {
-    console.warn("One or more required elements for allowable stress calculation are missing.");
-    return;
-  }
-
   const inputTemp = parseFloat(tempEl.value);
   if (isNaN(inputTemp)) {
     stressResult.value = "";
@@ -273,11 +268,6 @@ function calculateShellThickness() {
   const D = parseFloat(DEl.value);
   const type = typeEl.value;
 
-  if ([Pd, S, E, D].some(v => isNaN(v))) {
-    outputEl.textContent = "";
-    return;
-  }
-
   let t;
   if (type === "Di") {
     t = (Pd * D / 2) / (S * E - 0.6 * Pd) + 2;
@@ -312,11 +302,6 @@ function calculateHeadThickness() {
   const D  = parseFloat(DEl.value);
   const type = typeEl.value;
   const geometry = geometryEl.value;
-
-  if ([Pd, S, E, D].some(v => isNaN(v))) {
-    outputEl.textContent = "";
-    return;
-  }
 
   let t;
 
@@ -495,11 +480,6 @@ function calculateSFBasedOnExternal () {
   const PextEl = document.querySelector('.PExternalInput');
   const outputEl = document.querySelector('.SFExtOutput');
 
-  if (!PcShellEl || !PextEl || !outputEl) {
-    console.warn("Missing input or output element for SF calculation");
-    return;
-  }
-
   const PcShell = parseFloat(PcShellEl.textContent);
   const Pext = parseFloat(PextEl.value);
 
@@ -582,11 +562,6 @@ function calculateNumberOfBolts() {
   const Di = calculateDi();
   const Pd = parseFloat(PdEl.value);
   const boltD = parseFloat(boltDEl.value);
-
-  if ([Presisting, Di, Pd, boltD].some(val => isNaN(val))) {
-    outputEl.textContent = "";
-    return;
-  }
 
   const boltN = (Pd * Math.PI/4 * Di**2) / (Presisting * Math.PI/4 * boltD**2);
 
@@ -712,21 +687,11 @@ function calculatePcShellGeneral() {
   const lobesEl = document.querySelector('.lobesInput');
   const shellThicknessEl = document.querySelector('.shellOutput');
 
-  if (!EyEl || !vEl || !lobesEl || !shellThicknessEl) {
-    console.warn("Missing elements for PcShell General calculation");
-    return;
-  }
-
   const Ey = parseFloat(EyEl.value);
   const v = parseFloat(vEl.value); 
   const lobes = parseFloat(lobesEl.value);
   const t = parseFloat(shellThicknessEl.textContent);
   const Do = calculateDo();
-
-  if ([Ey, v, lobes, t, Do].some(val => isNaN(val))) {
-    document.querySelector('.PcShellOutput').textContent = "";
-    return;
-  }
 
   const Pc = ((1/3) * ((2 * (Ey * 1000) * (lobes ** 2 - 1)) / (1 - v ** 2)) * ((t / Do) ** 3)).toFixed(4);
   document.querySelector('.PcShellOutput').textContent = Pc;
@@ -739,20 +704,10 @@ function calculatePcShellKc() {
   const shellThicknessEl = document.querySelector('.shellOutput');
   const KcEl = document.querySelector('.inputKc');
 
-  if (!EyEl || !shellThicknessEl || !KcEl) {
-    console.warn("Missing elements for PcShell Kc calculation");
-    return;
-  }
-
   const Ey = parseFloat(EyEl.value);
   const t = parseFloat(shellThicknessEl.textContent);
   const Do = calculateDo();
   const Kc = parseFloat(KcEl.value);
-
-  if ([Ey, t, Do, Kc].some(val => isNaN(val))) {
-    document.querySelector('.PcShellOutput').textContent = "";
-    return;
-  }
 
   const Pc = (Kc * Ey * (t / Do) ** 3).toFixed(4);
   document.querySelector('.PcShellOutput').textContent = Pc;
@@ -778,6 +733,7 @@ document.querySelectorAll(
   el.addEventListener("input", calculatePcShell);
   el.addEventListener("change", calculatePcShell);
 });
+
 
 
 

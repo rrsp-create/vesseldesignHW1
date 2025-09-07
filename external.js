@@ -267,11 +267,6 @@ function calculateShellThickness() {
   const typeEl = document.getElementById("diameterType");
   const outputEl = document.querySelector('.shellOutput');
 
-  if (!PdEl || !SEl || !EEl || !DEl || !typeEl || !outputEl) {
-    console.warn("One or more required elements for shell thickness calculation are missing.");
-    return;
-  }
-
   const Pd = parseFloat(PdEl.value);
   const S = parseFloat(SEl.value);
   const E = parseFloat(EEl.textContent);
@@ -310,12 +305,6 @@ function calculateHeadThickness() {
   const typeEl = document.getElementById("diameterType");
   const outputEl = document.querySelector('.headOutput');
   const geometryEl = document.querySelector('.head-shape input:checked');
-
-
-  if (!PdEl || !SEl || !EEl || !DEl || !typeEl || !outputEl || !geometryEl) {
-    console.warn("Missing elements for head thickness calculation");
-    return;
-  }
 
   const Pd = parseFloat(PdEl.textContent || PdEl.value);
   const S  = parseFloat(SEl.textContent || SEl.value);
@@ -400,11 +389,6 @@ function calculatePcHead() {
   console.log(outputEl);
   console.log(Rs);
 
-  if (!EyEl || !vEl || !shellThicknessEl || !outputEl) {
-    console.warn("Missing input or output element for PcHead calculation");
-    return;
-  }
-
   const Ey = parseFloat(EyEl.value);
   const v = parseFloat(vEl.value);
   const t = parseFloat(shellThicknessEl.textContent);
@@ -414,11 +398,6 @@ function calculatePcHead() {
   console.log(v);
   console.log(t);
   console.log(Do);
-
-  if ([Ey, v, t, Do].some(val => isNaN(val))) {
-    outputEl.textContent = "";
-    return;
-  }
 
   const Pc = (2 * Ey * t**2) / ((Rs**2)*(Math.sqrt(3*(1-v**2))));
   outputEl.textContent = Pc.toFixed(4);
@@ -493,19 +472,11 @@ function calculateStiffeningRingDistance() {
   const shellThicknessEl = document.querySelector('.shellOutput');
   const outputEl = document.querySelector('.LcOutput');
 
-  if (!vEl || !shellThicknessEl || !outputEl) {
-    console.warn("Missing input or output element for PcHead calculation");
-    return;
-  }
 
   const v = parseFloat(vEl.value);
   const t = parseFloat(shellThicknessEl.textContent);
   const Do = calculateDo();
 
-  if ([v, t, Do].some(val => isNaN(val))) {
-    outputEl.textContent = "";
-    return;
-  }
 
   const Lc = ((4*Math.PI*Math.sqrt(6)*Do)/27)*((1-v**2)**(1/4))*(Math.sqrt(Do/t));
 
@@ -552,18 +523,9 @@ function calculateMaxOc() {
   const tEl = document.querySelector('.shellOutput');
   const outputEl = document.querySelector('.OcOutput')
 
-  if (!PdEl || !tEl) {
-    console.warn("Missing input or output element for MaxOc");
-    return;
-  }
 
   const Pd = parseFloat(PdEl.value);
   const t = parseFloat(tEl.textContent);
-
-  if ([Pd, t, Rm].some(val => isNaN(val))) {
-    outputEl.textContent = "";
-    return;
-  }
 
   const Oc = Pd*Rm / t;
 
@@ -595,18 +557,10 @@ function calculateSFBasedOnInternal () {
   const OcMaxEl = document.querySelector('.OcOutput');
   const outputEl = document.querySelector('.SFIntOutput');
 
-  if (!SEl || !OcMaxEl || !outputEl ) {
-    console.warn("Missing input or output element for SFInt calculation");
-    return;
-  }
 
   const S = parseFloat(SEl.textContent);
   const OcMax = parseFloat(OcMaxEl.value);
 
-  if ([S, OcMax].some(val => isNaN(val))) {
-    outputEl.textContent = "";
-    return;
-  }
   const SF = OcMax/S;
 
   outputEl.textContent = SF.toFixed(4);
@@ -623,10 +577,6 @@ function calculateNumberOfBolts() {
   const boltDEl = document.querySelector('.boltDInput');
   const outputEl = document.querySelector('.boltNOutput');
 
-  if (!PresistingEl || !PdEl || !boltDEl || !outputEl) {
-    console.warn("Missing input or output element for bolt calculation");
-    return;
-  }
 
   const Presisting = parseFloat(PresistingEl.value);
   const Di = calculateDi();
@@ -690,20 +640,12 @@ function calculatePcShellKc () {
   const shellThicknessEl = document.querySelector('.shellOutput');
   const KcEl = document.querySelector('.inputKc');
 
-  if (!EyEl || !shellThicknessEl || !Kc) {
-    console.warn("One or more required elements for Head thickness calculation are missing.");
-    return;
-  }
 
   const Kc = parseFloat(KcEl.value);
   const Ey = parseFloat(EyEl.value);
   const t = parseFloat(shellThicknessEl.textContent);
   const Do = calculateDo();
 
-  if ([Ey, t, Do].some(val => isNaN(val))) {
-    document.querySelector('.PcShellOutput').textContent = "";
-    return;
-  }
 
   const Pc = (Kc * Ey * (t / Do) ** 3).toFixed(4);
 
@@ -836,6 +778,7 @@ document.querySelectorAll(
   el.addEventListener("input", calculatePcShell);
   el.addEventListener("change", calculatePcShell);
 });
+
 
 
 
